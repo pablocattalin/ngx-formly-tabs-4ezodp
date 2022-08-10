@@ -1,0 +1,20 @@
+<form [formGroup]="form">
+  <mat-tab-group>
+    <mat-tab
+      *ngFor="let tab of configItemsBD?.tabs; let index = index"
+      [disabled]="index !== 0 && !form.at(index - 1)?.valid"
+    >
+      <ng-template mat-tab-label>
+        <span transl>{{ tab?.label }}</span>
+      </ng-template>
+
+      <formly-form
+        [form]="form.at(index)"
+        [model]="model"
+        [fields]="tab?.fields"
+        [options]="options[index]"
+      >
+      </formly-form>
+    </mat-tab>
+  </mat-tab-group>
+</form>
